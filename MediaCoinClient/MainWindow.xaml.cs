@@ -56,10 +56,12 @@ namespace MediaCoinClient
             {
                 try
                 {
-                    requests.Get("http://127.0.0.1:8102/-/info?type=debug");
-                    Application.Current.Dispatcher.Invoke((Action)delegate { this.status_string.Content = "Подключение установлено!"; });
-                    logger.Debug("MediaCoin connected.");
-                    break;
+                    var res = requests.Get("http://127.0.0.1:8102/-/info?type=debug");
+                    if (res["status"].ToString() == "error") { }
+                    else {
+                        Application.Current.Dispatcher.Invoke((Action)delegate { this.status_string.Content = "Подключение установлено!"; });
+                        logger.Debug("MediaCoin connected.");
+                        break; }
                 }
                 catch (Exception ex)
                 {
