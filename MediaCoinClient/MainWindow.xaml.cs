@@ -57,8 +57,8 @@ namespace MediaCoinClient
                 try
                 {
                     var res = requests.Get("http://127.0.0.1:8102/-/info?type=debug");
-                    if (res["status"].ToString() == "error") { }
-                    else {
+                    if (res["type"].ToString() == "1") { 
+                   
                         Application.Current.Dispatcher.Invoke((Action)delegate { this.status_string.Content = "Подключение установлено!"; });
                         logger.Debug("MediaCoin connected.");
                         break; }
